@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const bottomContainerHeight = 80.0;
+const activeCardColor = Color(0xFF1D1E33);
+const bottomContainerColor = Color(0xFFEB1555);
+
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
 
@@ -21,32 +25,38 @@ class _InputPageState extends State<InputPage> {
           //const SizedBox(height: 10,),
           Expanded(
             child: Row(
-              children: const [
+              children:[
                 Expanded(
-                  child: ReusableCard(colour: Color(0xFF1D1E33),),
+                  child: ReusableCard(colour:activeCardColor),
                 ),
                 Expanded(
-                  child: ReusableCard(colour: Color(0xFF1D1E33),),
+                  child: ReusableCard(colour:activeCardColor),
                 ),
               ],
             ),
           ),
 
-          const Expanded(
-            child: ReusableCard(colour: Color(0xFF1D1E33),),
+           Expanded(
+            child: ReusableCard(colour:activeCardColor),
           ),
 
           Expanded(
             child: Row(
-              children: const [
+              children: [
                 Expanded(
-                  child: ReusableCard(colour: Color(0xFF1D1E33),),
+                  child: ReusableCard(colour:activeCardColor),
                 ),
                 Expanded(
-                  child: ReusableCard(colour: Color(0xFF1D1E33),),
+                  child: ReusableCard(colour:activeCardColor),
                 ),
               ],
             ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            width: double.infinity,
+            height: bottomContainerHeight,
+            color: bottomContainerColor,
           ),
         ],
       ),
@@ -56,7 +66,7 @@ class _InputPageState extends State<InputPage> {
 
 class ReusableCard extends StatelessWidget {
 
-  const ReusableCard({super.key, required this.colour});
+ ReusableCard({super.key, required this.colour});
 
   final Color colour;
 
