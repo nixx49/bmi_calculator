@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'reusable_code.dart';
+import 'package:bmi_calculator/IconInfo.dart';
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
@@ -25,29 +28,37 @@ class _InputPageState extends State<InputPage> {
           //const SizedBox(height: 10,),
           Expanded(
             child: Row(
-              children:[
+              children: [
                 Expanded(
-                  child: ReusableCard(colour:activeCardColor),
+                  child: ReusableCard(
+                    colour: activeCardColor,
+                    cardChild: IconInfo(icon: FontAwesomeIcons.mars,label: 'MALE',),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(colour:activeCardColor),
+                  child: ReusableCard(
+                    colour: activeCardColor,
+                    cardChild: IconInfo(icon: FontAwesomeIcons.venus,label: 'Female',),
+                  ),
                 ),
               ],
             ),
           ),
 
-           Expanded(
-            child: ReusableCard(colour:activeCardColor),
+          Expanded(
+            child: ReusableCard(colour: activeCardColor,cardChild: IconInfo(icon: FontAwesomeIcons.venus,label: 'Female',),),
           ),
 
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(colour:activeCardColor),
+                  child: ReusableCard(colour: activeCardColor,cardChild: IconInfo(icon: FontAwesomeIcons.venus,label: 'Female',),),
                 ),
                 Expanded(
-                  child: ReusableCard(colour:activeCardColor),
+                  child: ReusableCard(
+                    colour: activeCardColor,cardChild: IconInfo(icon: FontAwesomeIcons.venus,label: 'Female',),
+                  ),
                 ),
               ],
             ),
@@ -64,21 +75,5 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class ReusableCard extends StatelessWidget {
 
- ReusableCard({super.key, required this.colour});
 
-  final Color colour;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // height: 190,
-      // width: 185,
-      margin: const EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-          color: colour,
-          borderRadius: BorderRadius.circular(10.0)),
-    );
-  }
-}
