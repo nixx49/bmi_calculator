@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_code.dart';
 import 'package:bmi_calculator/IconInfo.dart';
+//import 'updatecolor.dart';
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
 const bottomContainerColor = Color(0xFFEB1555);
+const inactiveCardColor = Color(0xFF111328);
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -15,6 +17,28 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColor = inactiveCardColor;
+  Color femaleCardColor = inactiveCardColor;
+  //
+  void UpdateColour(int gender) {
+    if (gender == 1) {
+      if (maleCardColor == inactiveCardColor) {
+        maleCardColor == activeCardColor;
+        femaleCardColor == inactiveCardColor;
+      } else {
+        maleCardColor == inactiveCardColor;
+      }
+    }
+    if (gender == 2) {
+      if (femaleCardColor == inactiveCardColor) {
+        femaleCardColor == activeCardColor;
+        maleCardColor == inactiveCardColor;
+      } else {
+        femaleCardColor == inactiveCardColor;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,15 +54,37 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(
-                    colour: activeCardColor,
-                    cardChild: IconInfo(icon: FontAwesomeIcons.mars,label: 'MALE',),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        print('male pressed');
+                        UpdateColour(1);
+                      });
+                    },
+                    child: ReusableCard(
+                      colour: maleCardColor,
+                      cardChild: IconInfo(
+                        icon: FontAwesomeIcons.mars,
+                        label: 'MALE',
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    colour: activeCardColor,
-                    cardChild: IconInfo(icon: FontAwesomeIcons.venus,label: 'Female',),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        UpdateColour(2);
+                        print('female pressed');
+                      });
+                    },
+                    child: ReusableCard(
+                      colour: femaleCardColor,
+                      cardChild: IconInfo(
+                        icon: FontAwesomeIcons.venus,
+                        label: 'Female',
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -46,34 +92,54 @@ class _InputPageState extends State<InputPage> {
           ),
 
           Expanded(
-            child: ReusableCard(colour: activeCardColor,cardChild: IconInfo(icon: FontAwesomeIcons.venus,label: 'Female',),),
+            child: ReusableCard(
+              colour: activeCardColor,
+              cardChild: IconInfo(
+                icon: FontAwesomeIcons.venus,
+                label: 'Female',
+              ),
+            ),
           ),
 
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(colour: activeCardColor,cardChild: IconInfo(icon: FontAwesomeIcons.venus,label: 'Female',),),
+                  child: ReusableCard(
+                    colour: activeCardColor,
+                    cardChild: IconInfo(
+                      icon: FontAwesomeIcons.venus,
+                      label: 'Female',
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    colour: activeCardColor,cardChild: IconInfo(icon: FontAwesomeIcons.venus,label: 'Female',),
+                    colour: activeCardColor,
+                    cardChild: IconInfo(
+                      icon: FontAwesomeIcons.venus,
+                      label: 'Female',
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: bottomContainerHeight,
-            color: bottomContainerColor,
+          GestureDetector(
+            onTap: (){
+              setState(() {
+                print(' nav bar pressed');
+              });
+            },
+            child: Container(
+              margin: const EdgeInsets.only(top: 10),
+              width: double.infinity,
+              height: bottomContainerHeight,
+              color: bottomContainerColor,
+            ),
           ),
         ],
       ),
     );
   }
 }
-
-
-
