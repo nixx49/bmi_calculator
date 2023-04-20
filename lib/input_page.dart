@@ -4,7 +4,6 @@ import 'reusable_code.dart';
 import 'package:bmi_calculator/IconInfo.dart';
 import 'constant.dart';
 
-
 enum Gender {
   male,
   female,
@@ -20,6 +19,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.noGender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,7 @@ class _InputPageState extends State<InputPage> {
         title: const Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           //const SizedBox(height: 10,),
           Expanded(
@@ -37,10 +38,10 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    onPress: (){
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
+                    onPress: () {
+                      // setState(() async {
+                      //   selectedGender = Gender.male;
+                      // });
                     },
                     colour: selectedGender == Gender.male
                         ? kActiveCardColor
@@ -53,17 +54,17 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    onPress: (){
-                      setState(() {
-                        selectedGender = Gender.female;
-                      });
+                    onPress: () {
+                      // setState(() {
+                      //   selectedGender = Gender.female;
+                      // });
                     },
                     colour: selectedGender == Gender.female
                         ? kActiveCardColor
                         : kInactiveCardColor,
                     cardChild: IconInfo(
                       icon: FontAwesomeIcons.venus,
-                      label: 'Female',
+                      label: 'FEMALE',
                     ),
                   ),
                 ),
@@ -73,11 +74,40 @@ class _InputPageState extends State<InputPage> {
 
           Expanded(
             child: ReusableCard(
-              onPress: (){},
+              onPress: () {},
               colour: kActiveCardColor,
-              cardChild: IconInfo(
-                icon: FontAwesomeIcons.venus,
-                label: 'Female',
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(height.toString(), style: kNumberTextStyle),
+                      const Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      )
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    min: 120.0,
+                    max: 220.0,
+                    activeColor: const Color(0xFFEB1555),
+                    inactiveColor: const Color(0xFF8D8E98),
+                    onChanged: (double newValue) {
+                      setState(() {
+                        height = newValue.round();
+                      });
+                    },
+                  ),
+                ],
               ),
             ),
           ),
@@ -87,7 +117,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    onPress: (){},
+                    onPress: () {},
                     colour: kActiveCardColor,
                     cardChild: IconInfo(
                       icon: FontAwesomeIcons.venus,
@@ -97,7 +127,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    onPress: (){},
+                    onPress: () {},
                     colour: kActiveCardColor,
                     cardChild: IconInfo(
                       icon: FontAwesomeIcons.venus,
@@ -111,7 +141,7 @@ class _InputPageState extends State<InputPage> {
           GestureDetector(
             onTap: () {
               setState(() {
-                print(' nav bar pressed');
+                // print(' nav bar pressed');
               });
             },
             child: Container(
