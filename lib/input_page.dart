@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_code.dart';
@@ -210,18 +211,32 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                // print(' nav bar pressed');
-              });
-            },
-            child: Container(
-              margin: const EdgeInsets.only(top: 10),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              color: kBottomContainerColor,
-            ),
+
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ResultPage()));
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  width: double.infinity,
+                  height: kBottomContainerHeight,
+                  color: kBottomContainerColor,
+                  child: const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'CALCULATE',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
